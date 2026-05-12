@@ -2,7 +2,7 @@
   "name": "NoMoreRolling",
   "version_number": "1.0.0",
   "website_url": "",
-  "description": "",
+  "description": "Fixes the spawn box wakeup sequence. No more ragdoll spin — players exit the coffin cleanly with a controlled forward launch.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305"
   ]
