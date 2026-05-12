@@ -1,0 +1,12 @@
+.decompiled/
+.decompiled-versions/
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+Thumbs.db
+.DS_Store

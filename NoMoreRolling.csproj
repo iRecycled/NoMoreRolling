@@ -1,0 +1,99 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>NoMoreRolling</AssemblyName>
+    <RootNamespace>NoMoreRolling</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <NoWarn>CS1591;CS8618;CS0436</NoWarn>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <!-- ===== Game / BepInEx references (never committed to git) ===== -->
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="0Harmony">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Assembly-CSharp">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Mirror">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\Mirror.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.UI">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Unity.InputSystem">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\Unity.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="DOTween">
+      <HintPath>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\Gamble With Your Friends_Data\Managed\DOTween.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- ===== Post-build: copy plugin DLL to BepInEx plugins folder ===== -->
+  <Target Name="DeployPlugin" AfterTargets="Build">
+    <PropertyGroup>
+      <PluginOutputDir>c:\SteamLibrary\steamapps\common\Gamble With Your Friends\BepInEx\plugins\NoMoreRolling</PluginOutputDir>
+    </PropertyGroup>
+    <MakeDir Directories="$(PluginOutputDir)" />
+    <Copy
+      SourceFiles="$(OutputPath)$(AssemblyName).dll"
+      DestinationFolder="$(PluginOutputDir)"
+      OverwriteReadOnlyFiles="true" />
+    <Message Text="[NoMoreRolling] Deployed to $(PluginOutputDir)" Importance="high" />
+  </Target>
+
+</Project>
